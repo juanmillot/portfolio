@@ -229,6 +229,7 @@ p{
     grid-column: 20 / 20;
     text-decoration: none;
     color: black;
+    
 }
 
 /* =========================
@@ -534,6 +535,7 @@ p{
     margin: 10px auto 0 auto; /* centra el bloque dentro del contenedor */
     line-height: 1.5;         /* mejora la lectura */
 }
+
 
 
 
