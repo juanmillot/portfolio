@@ -1,0 +1,539 @@
+@font-face {
+    font-family: 'Azeret Mono';
+    src: url('Montserrat-Regular.woff2') format('woff2'),
+        url('Montserrat-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Azeret+Mono:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Azeret Mono';
+}
+
+
+/* PALETA */
+:root{
+    --negro:#242424;
+    --blanco:#FFFF ;
+}
+
+:root{
+  --col: 96.75px;
+  --row: 94.2px;
+  --gutter: 20px;
+  --margin: 36px;
+  --cols: 12;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.page{
+  display:grid;
+
+  grid-template-columns:
+    repeat(var(--cols), var(--col));
+
+  column-gap: var(--gutter);
+  row-gap: var(--gutter);
+
+  grid-auto-rows: var(--row);
+
+  margin:0 auto;
+
+  padding-left: var(--margin);
+  padding-right: var(--margin);
+  padding-top: var(--margin);;
+
+  grid-template-rows: repeat(8, var(--row));
+
+  transition: filter 0.3s ease;
+}
+
+p{
+    font-family: 'Azeret Mono';
+    font-weight: 300;
+    font-size: 11px;
+    text-align: justify;
+}
+
+
+.name{
+  grid-column:1 / span 2;
+  grid-row:1;
+
+  font-size:16px;
+  font-weight:600;
+}
+
+/* =========================
+   SIDEBAR / MENU
+========================= */
+
+.sidebar{
+  grid-column:1 / span 2;
+  grid-row:3 / span 1;
+  align-self: end;
+  position:relative;
+  display:inline-block;
+  z-index: 200; /* corregido para estar por encima de otros elementos */
+}
+
+.sidebar.active .menu{
+  display:flex;
+}
+
+.sidebar nav{
+    gap: 60px;
+}
+
+.sidebar nav a{
+    font-size: 22px; /* Mantenido tal cual */
+    font-weight: 300; /* Mantenido tal cual */
+}
+
+.menu a span{
+    font-style: italic;
+}
+
+.menu-toggle{
+  text-decoration:none;
+  color:#111;
+  font-size:20px;
+  font-weight:600;
+}
+
+.menu{
+  margin-top:12px;
+  position:absolute;
+  top:100%;
+  left:0;
+
+  display:none;
+  flex-direction:column;
+
+  background:white;
+  padding:10px 0;
+  width: max-content;
+  z-index: 10;
+}
+
+.menu a{
+  display:block;
+  text-decoration:none;
+  color:#111;
+  font-size:14px;
+  margin-bottom:6px;
+}
+
+/* =========================
+   TEXTO PRINCIPAL
+========================= */
+
+.text{
+  grid-column:6 / span 4;
+  grid-row:1 / span 4;
+
+  font-size:15px;
+  line-height:1.45;
+
+  column-count:2;
+  column-gap:20px;
+}
+
+
+
+/* =========================
+   IMAGEN
+========================= */
+
+.photo{
+ grid-column: 10 / 14;
+  grid-row:1 / span 6;
+}
+
+.photo img{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+  object-position: center 20%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.photo img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* =========================
+   HEADER FIJO INFERIOR
+========================= */
+
+.header{
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:100%;
+  background:white;
+  border-top:2px solid black;
+  z-index: 100; /* corregido para estar por encima de otros elementos */
+}
+
+.header-inner{
+  padding:20px 36px;
+  gap:40px;
+   display:grid;
+
+  grid-template-columns: repeat(var(--cols), var(--col));
+  column-gap: var(--gutter);
+
+  align-items: center;
+}
+
+.header-inner img{
+    width: 50px;
+    height: 50px;
+}
+
+.header-inner span{
+    font-size: 14px;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.header-inner span:hover {
+  transform: translateY(-2px);
+  color: #555;
+}
+
+.logo{
+    grid-column: 1 / 2;
+}
+
+.numero{
+    grid-column: 6 / 8;
+}
+
+.mail{
+    grid-column: 10 / 11;
+}
+
+.ig{
+    grid-column: 20 / 20;
+    text-decoration: none;
+    color: black;
+}
+
+/* =========================
+   SECCIÓN PROYECTOS
+========================= */
+
+.projects {
+    display: grid;                  
+    grid-auto-rows: 100vh;          
+    row-gap: var(--gutter);         
+    scroll-snap-type: y mandatory;  
+    overflow-y: auto;               
+    padding-left: var(--margin);    
+    padding-right: var(--margin);   
+    transition: background-color 0.6s ease;
+    background-color: #fff;
+    color: #000;
+}
+
+.project {
+    display: grid;                  
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 1fr;        
+    gap: var(--gutter);
+    height: 100%;                   
+    scroll-snap-align: start;       
+}
+
+/* Alternar posición video/info */
+.project:nth-child(odd) video {
+    grid-column: 1 / span 8;
+    grid-row: 1 / 2;
+    justify-self: start;
+    align-self: center;
+}
+
+.project:nth-child(odd) .project-info {
+    grid-column: 9 / span 4;
+    grid-row: 1 / 2;
+    justify-self: start;
+    align-self: center;
+}
+
+.project:nth-child(even) video {
+    grid-column: 5 / span 8;
+    grid-row: 1 / 2;
+    justify-self: end;
+    align-self: center;
+}
+
+.project:nth-child(even) .project-info {
+    grid-column: 1 / span 2;
+    grid-row: 1 / 2;
+    justify-self: end;
+    align-self: center;
+    text-align: justify;
+}
+
+.project video {
+    width: 100%;
+    height: calc(var(--row) * 6);   
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+.project-info {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    justify-content: space-between;
+}
+
+.project-info h2 {
+    align-self: start;
+    margin: 0;
+}
+
+.project-info p {
+    align-self: end;  
+    margin: 0;
+}
+
+#motion20syl h2{
+  text-align: end;
+}
+
+/* =============================== */
+/* Proyectos 2, 3 y 4 - textos con grid */
+/* =============================== */
+.project:nth-child(n+2) .project-info {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    height: calc(var(--row) * 6);
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.project:nth-child(n+2) .project-info h2 {
+    align-self: start;
+    margin: 0;
+}
+
+.project:nth-child(n+2) .project-info p {
+    align-self: end;
+    margin: 0;
+}
+
+.project:nth-child(even) .project-info {
+    justify-self: start;
+}
+
+.project:nth-child(3) .project-info {
+    justify-self: end;
+}
+
+.project-info h2,
+.project-info p {
+    transition: color 0.6s ease;
+    text-align: justify;
+}
+
+.projects .project h2{
+  font-size: 22px;
+  font-weight: 600;
+}
+
+
+.sidebar .menu a {
+  font-weight: 300;
+  font-size: 20px;
+  display: inline-block;
+  transition: transform 0.3s ease-in-out, font-weight 0.3s ease-in-out, color 0.6s ease;
+}
+
+.sidebar .menu a:hover {
+  font-weight: 600;
+  transform: scale(1.05); /* crece un 5% */
+}
+
+/* =========================
+   OPACIDAD 
+========================= */
+
+.dimmed {
+  opacity: 0.2 !important; /* fuerza opacidad */
+  pointer-events: none; /* no bloquea clicks */
+  transition: opacity 0.3s ease;
+}
+
+/* opcional: que sidebar siempre arriba */
+.sidebar {
+  position: relative;
+  z-index: 1000;
+}
+/* =========================
+   PREVIEW
+========================= */
+
+.preview-image {
+  position: fixed;
+  pointer-events: none;  
+  width: 200px;           
+  height: 150px;
+  background-size: cover;
+  background-position: center;
+  border: 2px solid #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 2000; /* corregido para estar por encima de todo */
+}
+
+/* =========================
+   ANIMACION INICIAL
+========================= */
+
+.page > * {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.page.loaded > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================
+   CAMBIO DE COLOR DE FONDO
+========================= */
+
+.page {
+  transition: background-color 0.6s ease;
+  background-color: #fff; 
+  color: #000; 
+}
+
+.projects.scrolled {
+  background-color: #000;
+  color: #fff;
+}
+
+.page.scrolled {
+  background-color: #000;
+  color: #fff;
+}
+
+.page.scrolled .header {
+  background-color: #000;
+  color: #fff;
+  border-top: 2px solid #fff;
+}
+
+.page.scrolled .text p,
+.page.scrolled .name,
+.page.scrolled .numero,
+.page.scrolled .mail,
+.page.scrolled .ig {
+  color: #fff;
+}
+
+.page.scrolled .sidebar .menu a {
+  color: #fff;
+}
+
+/* =========================
+   PROYECTO REVISTA - SLIDER CENTRADO
+========================= */
+.project-revista {
+    display: flex;
+    justify-content: center;  /* centra horizontalmente */
+    align-items: center;      /* centra verticalmente */
+    flex-direction: column;
+    position: relative;
+    width: 100%;              /* ocupa el ancho disponible del contenedor de proyectos */
+    max-width: 800px;         /* ancho máximo para no desbordar la pantalla */
+    margin: 0 auto 40px auto; /* centra y separa del siguiente proyecto */
+    height: auto;             /* altura automática según la imagen */
+}
+
+.revista-slider {
+    position: relative;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.revista-slider img {
+    width: 100%;              /* ocupa todo el ancho del contenedor */
+    height: auto;             /* altura proporcional para que no se corte la página */
+    max-height: 600px;        /* limita la altura para que no haga scroll */
+    object-fit: contain;      /* mantiene proporciones completas de la imagen */
+    border-radius: 4px;
+    transition: transform 0.3s ease;
+}
+
+/* FLECHAS DENTRO DEL CONTENEDOR */
+.project-revista .prev,
+.project-revista .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;          /* sin fondo */
+    color: #fff;               /* color blanco */
+    border: none;
+    font-size: 2.5rem;         /* tamaño grande para que se vea bien */
+    cursor: pointer;
+    z-index: 10;
+    padding: 0;                /* sin padding */
+    width: 40px;               /* ancho del botón */
+    height: 40px;              /* alto del botón */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s;
+}
+
+.project-revista .prev {
+    left: -50px;               /* afuera del contenedor a la izquierda */
+}
+
+.project-revista .next {
+    right: -50px;              /* afuera del contenedor a la derecha */
+}
+
+.project-revista .prev:hover,
+.project-revista .next:hover {
+    transform: translateY(-50%) scale(1.2); /* agranda al pasar el mouse */
+}
+
+/* Opcional: sombras ligeras para que se vean sobre fondos oscuros */
+.project-revista .prev::before,
+.project-revista .next::before {
+    content: ''; 
+}
+
+/* INFO DEL PROYECTO */
+.project-revista .project-info p {
+    text-align: justify;      
+    max-width: 600px;         /* limita el ancho del párrafo */
+    margin: 10px auto 0 auto; /* centra el bloque dentro del contenedor */
+    line-height: 1.5;         /* mejora la lectura */
+}
+
+
+
